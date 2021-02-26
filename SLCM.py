@@ -27,7 +27,7 @@ def getusername_passwd():
 
 
 def secure_store(username, password, fileChoice, count):
-    #AES Encryption NOT WORKING
+    #AES Encryption
     obj = AES.new('JG9A90cqiveJ8K7n'.encode("utf8"), AES.MODE_CFB, 'g4vhFIR1KncRIyvO'.encode("utf8"))
     encryptPass = obj.encrypt(password.encode("utf8"))
 
