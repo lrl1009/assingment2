@@ -22,7 +22,7 @@ def getusername_paswd():
         if re.search(passwordregex, password) and (len(password) >= 8) and re.search(usernameregex, username):
             print("Password and username accepted")
             Valid = True
-            return 1, Valid
+            return password, username, 1
         else:
             print("Password or username is not valid. Please Try again.")
             Valid = False
