@@ -28,18 +28,18 @@ def getusername_passwd():
 
 def secure_store(username, password, fileChoice, count):
     #AES Encryption NOT WORKING
-    obj = AES.new('1234123412341234', AES.MODE_CBC, 'This is an IV456')
-    encryptPass = obj.encrypt(password)
+    obj = AES.new('JG9A90cqiveJ8K7n'.encode("utf8"), AES.MODE_CFB, 'g4vhFIR1KncRIyvO'.encode("utf8"))
+    encryptPass = obj.encrypt(password.encode("utf8"))
 
     #Checks for first run, creates file if needed and writes to it
     if fileChoice == 'Y' and count == 0:
         file = open("credential.dat", "w")
-        file.write('Username: ' + username + ' Encrypted Password: ' + encryptPass + '\n')
+        file.write('Username: ' + username + ' Encrypted Password: ' + str(encryptPass) + '\n')
         file.close()
     #Checks for additional runs, appending if requested or needed
     if fileChoice == 'N' or count > 0:
         file = open("credential.dat", "a")
-        file.write('Username: ' + username + ' Encrypted Password: ' + encryptPass + '\n')
+        file.write('Username: ' + username + ' Encrypted Password: ' + str(encryptPass) + '\n')
         file.close()
 
 
