@@ -1,36 +1,30 @@
-
 import re
+
 
 def getusername_paswd():
     passwordregex = ("^(?=.*[a-z])(?=." +
                      "*[A-Z])(?=.*\\d)" +
-                     "(?=.*[-+_!@#$%^&*., ?]).+$")
-    usernameregex = (".[.com, .gov, .edu, .net, .biz]{1}$" +
-                     ".@{1}")
+                     "(?=.*[-+_!@#$%^&*.,?]).+$")
+    usernameregex = ("@+.*.com|.edu|.gov|.biz|.net/Z")
 
     username = input("Enter your username: ")
-    password = input("Enter your password: "
-                     "\n 1. Must be 8 characters or more,"
+    password = input(" 1. Must be 8 characters or more,"
                      "\n 2. Contains at least one Capital letter,"
                      "\n 3. Contains at least one lowercase letter,"
                      "\n 4. Contains at least one number,"
-                     "\n 5. and has at least one {#,@,%,*}")
+                     "\n 5. and has at least one {#,@,%,*}"
+                     "\n Enter your password: ")
 
-
-
- #   if (".com" or ".edu" or ".gov" or ".net" or ".biz") in username and "@" in username:
- #       return 1
- #   else:
- #       return None
-
-    if re.search(passwordregex, password):
-        print("Password accepted")
+    if re.search(passwordregex, password) and (len(password) >= 8) and re.search(usernameregex, username):
+        print("Password and username accepted")
         return 1
     else:
-        print("Password is not valid. Please Try again.")
+        print("Password or username is not valid. Please Try again.")
+        getusername_paswd()
 
-    if re.search(usernameregex, username):
-        print("Username accepted")
-        return 1
-    else:
-        print("Username is not valid. Please try again.")
+
+def main():
+    getusername_paswd()
+
+
+main()
